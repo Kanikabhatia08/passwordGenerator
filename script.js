@@ -12,20 +12,26 @@ const generateBtn = document.querySelector(".generateButton");
 const allCheckBox = document.querySelectorAll("input[type=checkbox]");
 const symbols = '~`!@#$%^&*()_-+={[}]|:;"<,>.?/';
 
+
+//initial values
 let password = "";
 let passwordLength = 10;
 let checkCount = 0;
 handleSlider();
 
+//gray color
+setIndicator("#ccc");
+
+
 function handleSlider(){ //reflects pass length to ui
     inputSlider.value = passwordLength;
-    lengthDisplay.innerHTML = passwordLength;
+    lengthDisplay.innerText = passwordLength;
 
 }
 
-function setIndicator(){
-
-    indicator.computedStyleMap.backgroundcColor = color;
+function setIndicator(color){
+    indicator.style.backgroundcColor = color;
+    indicator.style.boxShadow = `0px 0px 12px 1px ${color}`;
 }
 
 function getRndInteger(min, max) {
@@ -38,7 +44,6 @@ function generateRandomNumber() {
 
 function generateLowerCase() {  
     return String.fromCharCode(getRndInteger(97,123)); //number to string from ascii value
-    
 }
 
 function generateUpperCase() {  
@@ -176,19 +181,18 @@ generateBtn.addEventListener('click', () => {
         funcArr.push(generateSymbol);
 
     
-     //compulsory addition
+    //compulsory addition
     for(let i=0; i<funcArr.length; i++) {
-        password = password + funcArr[i]();
+        password += funcArr[i]();
     }
     console.log("COmpulsory adddition done");
 
     //remaining adddition
-    for(let i=0; i<passwordLength-funcArr.length; i++){
-        let randIndex = getRndInteger(0, funcArr.length)
+    for(let i=0; i<passwordLength-funcArr.length; i++) {
+        let randIndex = getRndInteger(0 , funcArr.length);
         console.log("randIndex" + randIndex);
-        password = funcArr[randIndex]();
+        password += funcArr[randIndex]();
     }
-    console.log("Remaining adddition done");
 
     //now the letters will be in the order of the checkboxes but it should be random
     password = shufflePassword(Array.from(password));
