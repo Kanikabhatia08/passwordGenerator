@@ -108,7 +108,7 @@ function shufflePassword(array) { //array shuffle
     }
     let str = "";
     array.forEach((el) => {
-        console.log(str); //each element of array adding to string
+        // console.log(str); //each element of array adding to string
         (str = str + el)
     });
     // console.log(str)
@@ -158,7 +158,7 @@ generateBtn.addEventListener('click', () => {
     }
 
     // let's start the jouney to find new password
-    console.log("Starting the Journey");
+    // console.log("Starting the Journey");
     //remove old password
     password = "";
 
@@ -182,24 +182,24 @@ generateBtn.addEventListener('click', () => {
     for(let i=0; i<funcArr.length; i++) {
         password = password + funcArr[i]();
     }
-    console.log("COmpulsory adddition done");
+    // console.log("Compulsory adddition done");
 
     //remaining adddition
     for(let i=0; i<passwordLength-funcArr.length; i++) {
         let randIndex = getRndInteger(0 , funcArr.length);
-        console.log("randIndex" + randIndex);
-        console.log(password)
+        // console.log("randIndex" + randIndex);
+        // console.log(password)
         password = password + funcArr[randIndex]();
     }
-    console.log("Remaining adddition done");
+    // console.log("Remaining adddition done");
 
     //shuffle the password
     password = shufflePassword(Array.from(password)); //here the string is returned to password
-    console.log("Shuffling done");
+    // console.log("Shuffling done");
 
     //show in UI
     passwordDisplay.value = password;
-    console.log("UI adddition done");
+    // console.log("UI adddition done");
 
     //calculate strength
     calcStrength();
